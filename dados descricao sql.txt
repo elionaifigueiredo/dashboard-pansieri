@@ -1,0 +1,6 @@
+id	int	NO	PRI		auto_increment
+processo	varchar(50)	NO			
+sigla	varchar(20)	NO			
+status	varchar(20)	YES			
+data_entrada	datetime	NO			
+dia_semana	varchar(15)	YES			STORED GENERATED

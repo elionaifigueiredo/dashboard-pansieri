@@ -1,0 +1,16 @@
+id	int	NO	PRI		auto_increment
+pj	varchar(100)	YES			
+ficha	varchar(100)	YES			
+processo	varchar(100)	YES			
+origem	varchar(150)	YES			
+agenda_texto	text	YES			
+evento	varchar(150)	YES			
+data_entrada	datetime	YES	MUL		
+data_agendamento	datetime	YES			
+sigla	varchar(50)	YES			
+fase	varchar(100)	YES			
+evento_sigla	varchar(50)	YES			
+grupo	varchar(100)	YES			
+justificativa	text	YES			
+trabalho_texto	longtext	YES			
+criado_em	timestamp	YES		CURRENT_TIMESTAMP	DEFAULT_GENERATED
