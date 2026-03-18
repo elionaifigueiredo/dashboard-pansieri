@@ -1,0 +1,677 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 9,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": true,
+      "title": "CPJ CONNECT",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://app.leviatan.com.br/pansieri/cpj/cpj-connect/#/"
+    }
+  ],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 31,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/.*/",
+          "values": true
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.1",
+      "targets": [
+        {
+          "dataset": "dashboard",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  DATE_FORMAT(\r\n    STR_TO_DATE(CONCAT(${mes}, '-01'), '%Y-%m-%d'),\r\n    '%M %Y'\r\n  ) AS mes,\r\n  COUNT(*) AS total\r\nFROM dados\r\nWHERE data_entrada >= STR_TO_DATE(CONCAT(${mes}, '-01'), '%Y-%m-%d')\r\n  AND data_entrada < DATE_ADD(\r\n        STR_TO_DATE(CONCAT(${mes}, '-01'), '%Y-%m-%d'),\r\n        INTERVAL 1 MONTH\r\n      );",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-blue",
+            "mode": "fixed"
+          },
+          "displayName": "▶ Ver Base",
+          "fieldMinMax": false,
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Ir para Base",
+              "url": "/d/ffefvzneabny8c/base?orgId=1"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 5,
+        "y": 0
+      },
+      "id": 32,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 16
+        },
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.1",
+      "targets": [
+        {
+          "dataset": "dashboard",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT 1 AS botao;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 30,
+      "panels": [],
+      "title": "NOVOS CADASTROS ENCONTRADOS BANCO PAN ",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 16,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/.*/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 12
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.1",
+      "targets": [
+        {
+          "dataset": "dashboard",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT NOW() AS Ultima_Atualizacao;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "DD/MM/YYYY ⌚ HH:MM ",
+            "timeField": "Ultima_Atualizacao",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "gauge",
+              "valueDisplayMode": "text"
+            },
+            "filterable": false,
+            "inspect": false,
+            "width": 130
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 15,
+      "options": {
+        "cellHeight": "md",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": [],
+          "reducer": [
+            "sum"
+          ],
+          "show": true
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "11.2.1",
+      "targets": [
+        {
+          "dataset": "dashboard",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  DATE(data_entrada) AS data,\r\n  dia_semana,\r\n  COUNT(*) AS total\r\nFROM dados\r\nWHERE data_entrada >= STR_TO_DATE(CONCAT(${mes:singlequote}, '-01'), '%Y-%m-%d')\r\n  AND data_entrada < DATE_ADD(\r\n        STR_TO_DATE(CONCAT(${mes:singlequote}, '-01'), '%Y-%m-%d'),\r\n        INTERVAL 1 MONTH\r\n      )\r\nGROUP BY DATE(data_entrada), dia_semana\r\nORDER BY DATE(data_entrada) DESC;\r\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "DD/MM/YY",
+            "timeField": "data",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "data": false,
+              "dia_semana": false,
+              "total": false
+            },
+            "includeByName": {},
+            "indexByName": {
+              "data": 0,
+              "dia_semana": 1,
+              "total": 2
+            },
+            "renameByName": {
+              "data": "Data",
+              "dia_semana": "Dia da Semana",
+              "total": "Total Do Dia"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisBorderShow": true,
+            "axisCenteredZero": false,
+            "axisColorMode": "series",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "right",
+            "fillOpacity": 100,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 6,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "symlog"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "links": [
+            {
+              "title": "Detalhes",
+              "url": "/d/bffsuq03tefpcd/detalhes-base?var-data=${__data.fields.data}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              },
+              {
+                "color": "green",
+                "value": 50
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "total"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 5,
+      "options": {
+        "barRadius": 0.15,
+        "barWidth": 0.51,
+        "fullHighlight": true,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {
+          "valueSize": 16
+        },
+        "tooltip": {
+          "maxHeight": 255,
+          "maxWidth": 255,
+          "mode": "multi",
+          "sort": "asc"
+        },
+        "xTickLabelRotation": 45,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.4.19",
+      "targets": [
+        {
+          "dataset": "relatorio",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  DATE(data_entrada) AS data,\r\n  MAX(dia_semana) AS dia_semana,\r\n  COUNT(*) AS total,\r\n  CASE \r\n    WHEN SUM(status = 'Migrado') > 0 THEN 'Tem Migrado'\r\n    ELSE 'Sem Migrado'\r\n  END AS tag_migrado\r\nFROM dados\r\nWHERE data_entrada >= STR_TO_DATE(CONCAT(${mes}, '-01'), '%Y-%m-%d')\r\n  AND data_entrada < DATE_ADD(\r\n        STR_TO_DATE(CONCAT(${mes}, '-01'), '%Y-%m-%d'),\r\n        INTERVAL 1 MONTH\r\n      )\r\nGROUP BY DATE(data_entrada)\r\nORDER BY data;",
+          "refId": "Exibe por data de entrada",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "dados"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "data"
+              }
+            ]
+          }
+        },
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "DD/MM/YYYY",
+            "timeField": "data",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "data": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "data": "Data ",
+              "dia_semana": "Dia da Semana",
+              "total": "Total"
+            }
+          }
+        }
+      ],
+      "type": "barchart"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "2026-03",
+          "value": "2026-03"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "ef0xi5ayk5dkwc"
+        },
+        "definition": "SELECT DISTINCT DATE_FORMAT(data_entrada, '%Y-%m') AS mes FROM dados ORDER BY mes DESC;\n",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Escolha o Mês",
+        "multi": false,
+        "name": "mes",
+        "options": [],
+        "query": "SELECT DISTINCT DATE_FORMAT(data_entrada, '%Y-%m') AS mes FROM dados ORDER BY mes DESC;\n",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 2,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "2025-11-07T15:01:32.805Z",
+    "to": "2025-11-07T15:06:32.805Z"
+  },
+  "timepicker": {
+    "hidden": false
+  },
+  "timezone": "browser",
+  "title": "Principal",
+  "uid": "df0xjchqcxfcwa",
+  "version": 1203,
+  "weekStart": ""
+}

@@ -1,0 +1,323 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 11,
+  "links": [],
+  "panels": [
+    {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "title": "Arquivados ",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 0,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div>\n  <a href=\"/d/ffefvzneabny8c/base?orgId=1\"\n   style=\"\n      display:inline-block;\n      padding:10px 20px;\n      background-color:#1f78c1;\n      color:white;\n      text-decoration:none;\n      border-radius:5px;\n      \n      text-align:center;\n   \">\n     Voltar Base\n  </a>\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "11.2.1",
+      "targets": [
+        {
+          "dataset": "dashboard",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT NOW() AS Ultima_Atualizacao;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "formatTime",
+          "options": {
+            "outputFormat": "DD/MM/YYYY ⌚ HH:MM ",
+            "timeField": "Ultima_Atualizacao",
+            "timezone": "utc",
+            "useTimezone": true
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 21,
+        "y": 1
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.1",
+      "targets": [
+        {
+          "dataset": "dashboard",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \r\n  COUNT(*) AS total_geral_mes\r\nFROM arquivos\r\nWHERE\r\n  ('$mes' = 'All' OR DATE_FORMAT(data_agendamento, '%Y-%m') = '$mes')\r\n  AND fase IN ('Encerrado','INATIVADO','PROCESSO MIGRADO');",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Total",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "mysql",
+        "uid": "ef0xi5ayk5dkwc"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "links": [
+            {
+              "title": "Detalhes",
+              "url": "/d/bffsuq03tefpcd/detalhes-arquivos"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 22,
+        "x": 1,
+        "y": 3
+      },
+      "id": 3,
+      "options": {
+        "displayMode": "lcd",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "text"
+      },
+      "pluginVersion": "11.2.1",
+      "targets": [
+        {
+          "dataset": "dashboard",
+          "datasource": {
+            "type": "mysql",
+            "uid": "ef0xi5ayk5dkwc"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  fase,\r\n  COUNT(*) AS total\r\nFROM arquivos\r\nWHERE\r\n  DATE_FORMAT(data_agendamento, '%Y-%m') = '$mes'\r\n  AND fase IN ('Encerrado','PROCESSO MIGRADO','INATIVADO')\r\nGROUP BY fase\r\nORDER BY fase;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Agenda Arquivo",
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "2026-02",
+          "value": "2026-02"
+        },
+        "datasource": {
+          "type": "mysql",
+          "uid": "ef0xi5ayk5dkwc"
+        },
+        "definition": "SELECT DISTINCT\n  DATE_FORMAT(data_agendamento, '%Y-%m') AS mes\nFROM\narquivos\nORDER BY\n  mes DESC;",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "mes",
+        "options": [],
+        "query": "SELECT DISTINCT\n  DATE_FORMAT(data_agendamento, '%Y-%m') AS mes\nFROM\narquivos\nORDER BY\n  mes DESC;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Arquivados",
+  "uid": "bfeeqw26p2z9cd",
+  "version": 149,
+  "weekStart": ""
+}
